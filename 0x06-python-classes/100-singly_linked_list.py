@@ -19,7 +19,8 @@ class Node:
         """sets the data"""
         if type(value) is not int:
             raise TypeError('data must be an integer')
-        self.__data = value
+        else:
+            self.__data = value
 
     @property
     def next_node(self):
@@ -32,7 +33,7 @@ class Node:
         if isinstance(value, Node) or value is None:
             self.__next_node = value
         else:
-            raise TypeError("next_node must be a node object")
+            raise TypeError("next_node must be a Node object")
 
 
 class SinglyLinkedList:
@@ -56,7 +57,7 @@ class SinglyLinkedList:
                     < value):
                 tmp = tmp.next_node
             new_node.next_node = tmp.next_node
-            tmp.next_node = tmp
+            tmp.next_node = new_node
 
     def __str__(self):
         """defines the print representation of the list"""
