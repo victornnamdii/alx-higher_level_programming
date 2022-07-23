@@ -6,6 +6,7 @@ Author: Ilodiuba Victor (victornnamdii)
 Date Created: Jul 23 2022
 """
 
+
 def add_integer(a, b=98):
     """
     This function computes the addition of two numbers
