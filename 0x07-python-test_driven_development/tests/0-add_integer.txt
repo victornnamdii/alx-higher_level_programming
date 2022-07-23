@@ -1,0 +1,102 @@
+Testing ``0-add_integer`` integer
+=================================
+
+Contains only one function ``add_integer``
+-----------------------------------
+
+Importing:
+	>>> add_integer = __import__("0-add_integer").add_integer
+
+Module docstring:
+	>>> m = __import__("0-add_integer").__doc__
+	>>> len(m) > 1
+	True
+
+Function docstring:
+	>>> f = __import__("0-add_integer").add_integer.__doc__
+	>>> len(f) > 1
+	True
+
+Addition with numbers:
+	>>> add_integer(5, 7)
+	12
+
+Addition with negative and postitive number:
+	>>> add_integer(7, -10)
+	-3
+
+	>>> add_integer(10, -7)
+	3
+
+Addition with multiple values:
+	>>> [add_integer(k, k ** 2) for k in range(10)]
+	[0, 2, 6, 12, 20, 30, 42, 56, 72, 90]
+
+Addition with float and int:
+	>>> add_integer(5.2, 12)
+	17
+
+	>>> add_integer(8, 8.8)
+	16
+
+Addition with both float:
+	>>> add_integer(7.8, 8.2)
+	15
+
+Addition with passed NaN:
+	>>> add_integer(1, float('nan'))
+	Traceback (most recent call last):
+	...
+	ValueError: cannot convert float NaN to integer
+
+Addition with passed inf:
+	>>> add_integer(1, float('inf'))
+	Traceback (most recent call last):
+	...
+	OverflowError: cannot convert float infinity to integer
+
+Addition with super long int:
+	>>> add_integer(999999999999999999999999999999, 1)
+	1000000000000000000000000000000
+
+Addition with non-number:
+	>>> add_integer("5", 1)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+
+	>>> add_integer(1, [3])
+	Traceback (most recent call last):
+	...
+	TypeError: b must be an integer
+
+	>>> add_integer((2, 5), {"test": "module"})
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+
+	>>> add_integer(True, 1)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+
+	>>> add_integer(1, False)
+	Traceback (most recent call last):
+	...
+	TypeError: b must be an integer
+
+Addition with no args:
+	>>> add_integer()
+	Traceback (most recent call last):
+	...
+	TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Addition with only first arg:
+	>>> add_integer(2)
+	100
+
+Addition with more than 2 args:
+	>>> add_integer(1, 2, 3)
+	Traceback (most recent call last):
+	...
+	TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
