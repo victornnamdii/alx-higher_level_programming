@@ -14,7 +14,16 @@ def text_indentation(text):
     """
     if type(text) is not str:
         raise TypeError("text must be a string")
+    m = "z"
+    k = 1
     for letter in text:
-        print(letter, end="")
-        if letter is in ".?:":
+        if (k == 1 and letter == " "):
+            continue
+        else:
+            k = 2
+        if not (letter == " " and m in ".?:"):
+            print(letter, end="")
+        if letter in ".?:":
             print("\n" * 2, end="")
+            k = 1
+        m = letter
