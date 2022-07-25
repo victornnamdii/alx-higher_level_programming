@@ -56,7 +56,6 @@ if __name__ == "__main__":
                 if (x == n - 1):  # we have reached n
                     print(a)
                 else:
-                    nqueens(x + 1)  #increases x value till n
+                    nqueens(x + 1)  # increases x value till n
 
-    
-    nqueens(0) # starts the process
+    nqueens(0)  # starts the process
