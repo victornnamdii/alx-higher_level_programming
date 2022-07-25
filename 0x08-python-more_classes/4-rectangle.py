@@ -9,7 +9,7 @@ class Rectangle:
     Defines a rectangle
     """
     def __init__(self, width=0, height=0):
-        """ Initializes the rectangle """
+        """ Initializes the rectangle"""
         self.width = width
         self.height = height
 
@@ -61,3 +61,7 @@ class Rectangle:
             if i < (self.__height - 1):
                 print()
         return ""
+
+    def __repr__(self):
+        """ returns a string representation of the rectangle """
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
