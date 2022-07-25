@@ -44,12 +44,12 @@ class MaxIntegerTest(unittest.TestCase):
     def test_positive_beginning(self):
         """Tests with max at beginning"""
         b = [1000, 17, 9, 66, 64, 90]
-        self.assertEqual(max_integer(b), 200)
+        self.assertEqual(max_integer(b), 1000)
 
     def test_one_negative(self):
         """Tests with one negative number"""
         on = [1000, 17, 9, -66, 64, 90]
-        self.assertEqual(max_integer(on), 200)
+        self.assertEqual(max_integer(on), 1000)
 
     def test_all_negative(self):
         """Tests with all negative numbers"""
