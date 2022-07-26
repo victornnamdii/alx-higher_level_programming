@@ -19,9 +19,9 @@ def matrix_mul(m_a, m_b):
         raise TypeError("m_a must be a list of lists")
     if not(all(type(row) == list for row in m_b)):
         raise TypeError("m_b must be a list of lists")
-    if m_a == [] or m_a == [[]]:
+    if m_a == [] or m_a[0] == []:
         raise ValueError("m_a can't be empty")
-    if m_b == [] or m_b == [[]]:
+    if m_b == [] or m_b[0] == []:
         raise ValueError("m_b can't be empty")
     if not(all(type(e) in [float, int] for e in [e for row in m_a for e in
                                                  row])):
