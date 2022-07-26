@@ -5,7 +5,7 @@ Using ``lazy_matrix_mul``
 -------------------
 
 Importing:
-	>>> matrix_mul = __import__("101-lazy_matrix_mul").lazy_matrix_mul
+	>>> lazy_matrix_mul = __import__("101-lazy_matrix_mul").lazy_matrix_mul
 
 module docstring:
 	 >>> m = __import__("101-lazy_matrix_mul").__doc__
