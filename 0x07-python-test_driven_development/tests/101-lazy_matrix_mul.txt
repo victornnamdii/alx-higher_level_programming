@@ -37,8 +37,8 @@ Checking for too many args:
 
 Checking for normal use with ints and floats:
 	 >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1.5, 2.5, 3.5], [4.5, 6.5, 7.5]]))
-	 [[10.5   15.5  18.5]
-	  [22.5   33.5  40.5]]
+	 [[10.5 15.5 18.5]
+	  [22.5 33.5 40.5]]
 
 Checking for passing non-list as m_a:
 	 >>> lazy_matrix_mul(None, [[1, 2], [3, 4]])
