@@ -13,11 +13,8 @@ class LockedClass:
     instance attributes, except if the new instance attribute
     is called first_name
     """
-    def __setattr__(self, attr, value):
-        """
-        Checks if instance attribute is first_name
-        """
-        if attr != 'first_name':
-            raise AttributeError("'LockedClass' object has no attribute '{}'"
-                                 .format(attr))
-        self.__dict__.update({attr: value})
+    def __setattr__(self, name, value):
+        if name == "first_name":
+            self.__dict__[name] = value
+        else:
+            raise AttributeError("'LockedClass' object has no attribute '" + name + "'")
