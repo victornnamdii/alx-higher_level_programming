@@ -7,7 +7,7 @@ Date Created: 02 Aug 2022
 """
 
 
-class Mylist(list):
+class MyList(list):
     """
     Represents a class MyList
     """
