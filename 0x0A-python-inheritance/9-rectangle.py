@@ -31,5 +31,5 @@ class Rectangle(G):
         """
         The string representation of the class
         """
-        return ("[" + str(self.__class.__name__) + "]" +
+        return ("[Rectangle]" +
                 str(self.__width) + "/" + str(self.__height))
