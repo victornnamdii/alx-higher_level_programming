@@ -16,6 +16,7 @@ def append_after(filename="", search_string="", new_string=""):
     line_list = []
     with open(filename, "r", encoding="UTF-8") as f:
         line_list = f.readlines()
+        i = 0
         while i < len(line_list):
             if search_string in line_list[i]:
                 line_list[i:i + 1] = [line_list[i], new_string]
