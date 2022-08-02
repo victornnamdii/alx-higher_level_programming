@@ -22,4 +22,4 @@ class MyInt(int):
         """
         Override != operator with == behavior
         """
-        return self.real == valud
+        return self.real == value
