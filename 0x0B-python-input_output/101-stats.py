@@ -21,15 +21,15 @@ if __name__ == "__main__":
     size = 0
     status_codes = {}
     valid_codes = ['200', '301', '400', '401', '403', '404', '405', '500']
-    count = 0
+    counts = 0
 
     try:
         for line in sys.stdin:
-            if count == 10:
+            if counts == 10:
                 print_stats(size, status_codes)
-                count = 1
+                counts = 1
             else:
-                count += 1
+                counts += 1
 
             line = line.split()
 
