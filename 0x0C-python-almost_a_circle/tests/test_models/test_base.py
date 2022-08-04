@@ -16,12 +16,12 @@ class TestBase(unittest.TestCase):
 
     def test_id_init(self):
         b1 = Base()
-        b2 = Base()
-        b3 = Base(70)
-        b4 = Base()
         self.assertEqual(b1.id, 1)
+        b2 = Base()
         self.assertEqual(b2.id, 2)
+        b3 = Base(70)
         self.assertEqual(b3.id, 70)
+        b4 = Base()
         self.assertEqual(b4.id, 3)
 
 if __name__ == '__main__':
