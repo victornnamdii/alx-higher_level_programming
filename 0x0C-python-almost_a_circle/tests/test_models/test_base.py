@@ -7,7 +7,7 @@ Date Created: 04 Aug 2022
 """
 
 import unittest
-Base = __import__('models/base').Base
+from models.base import Base
 
 class TestBase(unittest.TestCase):
     """
