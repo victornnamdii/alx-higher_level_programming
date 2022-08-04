@@ -9,6 +9,7 @@ Date Created: 04 Aug 2022
 import unittest
 from models.base import Base
 
+
 class TestBase(unittest.TestCase):
     """
     Unit tests for the base model
@@ -23,6 +24,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b3.id, 70)
         b4 = Base()
         self.assertEqual(b4.id, 3)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -27,7 +27,9 @@ class Rectangle(Base):
         """
         String representation of class
         """
-        return ("[Rectangle] (" + str(self.id) + ") " + str(self.__x) + "/" + str(self.__y) + " - " + str(self.__width) + "/" + str(self.__height))
+        return ("[Rectangle] (" +
+                str(self.id) + ") " + str(self.__x) + "/" + str(self.__y) +
+                " - " + str(self.__width) + "/" + str(self.__height))
 
     def check_value(self, name, value, sides=True):
         """
@@ -111,4 +113,4 @@ class Rectangle(Base):
         """
         Prints in stdout the Rectangle instance with the character '#'
         """
-        print((("#" * self.__width) + "\n") * self.__height, end ='')
+        print((("#" * self.__width) + "\n") * self.__height, end='')

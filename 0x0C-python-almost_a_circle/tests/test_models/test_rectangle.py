@@ -13,6 +13,7 @@ from models import rectangle
 from models.base import Base
 Rectangle = rectangle.Rectangle
 
+
 class TestRectangle(unittest.TestCase):
     """
     Unit test for Rectangle
@@ -29,7 +30,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.id, 98)
         r4 = Rectangle(8, 9)
         self.assertEqual(r4.id, Rectangle._Base__nb_objects)
-    
+
     def test_exceptions(self):
         """
         Testing exceptions
@@ -61,7 +62,7 @@ class TestRectangle(unittest.TestCase):
         r13 = Rectangle(4, 6)
         out1 = "##\n##\n"
         out2 = "####\n####\n####\n####\n####\n####\n"
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r12.display()
             self.assertEqual(fake_out.getvalue(), out1)
             r13.display()
@@ -72,9 +73,11 @@ class TestRectangle(unittest.TestCase):
         Testing string representation
         """
         r14 = Rectangle(4, 6, 2, 1, 12)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        out3 = "[Rectangle] (12) 2/1 - 4/6\n"
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r14)
-            self.assertEqual(fake_out.getvalue(), "[Rectangle] (12) 2/1 - 4/6\n")
+            self.assertEqual(fake_out.getvalue(), out3)
+
 
 if __name__ == '__main__':
     unittest.main()
