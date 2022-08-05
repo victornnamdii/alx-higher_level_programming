@@ -80,20 +80,25 @@ class TestSquare(unittest.TestCase):
         Testing string representation of square
         and update method
         """
-        out1 = "[Square] (1) 0/0 - 5\n"
-        out2 = "[Square] (2) 2/0 - 2\n"
-        out3 = "[Square] (3) 1/3 - 3\n"
+        out1 = "[Square] (1) 0/0 - 2\n"
+        out2 = "[Square] (2) 4/0 - 3\n"
+        out3 = "[Square] (3) 5/6 - 4\n"
         s1 = Square(5)
-        s1.update(1)
+        s1.update(1, 2)
         s2 = Square(2, 2)
-        s2.update(2)
+        s2.update(2, 3, 4)
         s3 = Square(3, 1, 3)
-        s3.update(3)
+        s3.update(3, 4, 5, 6)
         with patch('sys.stdout', new=StringIO()) as f:
             print(s1)
             print(s2)
             print(s3)
             self.assertEqual(f.getvalue(), out1 + out2 + out3)
+        s1.update(size=17, x=9, y=7, id=98)
+        out1 = "[Square] (98) 9/7 - 17\n"
+        with patch('sys.stdout', new=StringIO()) as f:
+            print(s1)
+            self.assertEqual(f.getvalue(), out1)
 
     def test_display(self):
         """
@@ -127,7 +132,6 @@ class TestSquare(unittest.TestCase):
             s1 = Square("b")
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s2 = Square(0)
-
 
 
 if __name__ == '__main__':

@@ -115,7 +115,7 @@ class Rectangle(Base):
         """
         print("\n" * self.__y, end='')
         for i in range(self.__height):
-                print((' ' * self.__x) + ('#' * self.__width) + '\n', end='')
+            print((' ' * self.__x) + ('#' * self.__width) + '\n', end='')
 
     def update(self, *args, **kwargs):
         """
@@ -125,13 +125,13 @@ class Rectangle(Base):
             for n, arg in enumerate(args):
                 if n == 0:
                     self.id = arg
-                if n == 1:
+                elif n == 1:
                     self.width = arg
-                if n == 2:
+                elif n == 2:
                     self.height = arg
-                if n == 3:
+                elif n == 3:
                     self.x = arg
-                if n == 4:
+                elif n == 4:
                     self.y = arg
         else:
             if "id" in kwargs:

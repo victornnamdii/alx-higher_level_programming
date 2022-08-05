@@ -25,7 +25,8 @@ class Square(Rectangle):
         """
         String representation of the class
         """
-        return ("[Square] (" + str(self.id) + ") " + str(self.x) + "/" + str(self.y) + " - " + str(self.size))
+        return ("[Square] (" + str(self.id) + ") " +
+                str(self.x) + "/" + str(self.y) + " - " + str(self.size))
 
     @property
     def size(self):
@@ -40,3 +41,27 @@ class Square(Rectangle):
         Setter for size
         """
         self.width = self.height = value
+    
+    def update(self, *args, **kwargs):
+        """
+        Updates the attributes values
+        """
+        if len(args):
+            for n, arg in enumerate(args):
+                if n == 0:
+                    self.id = arg
+                elif n == 1:
+                    self.size = arg
+                elif n == 2:
+                    self.x = arg
+                elif n == 3:
+                    self.y = arg
+        else:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "size" in kwargs:
+                self.width = kwargs["size"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]
