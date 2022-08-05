@@ -60,13 +60,23 @@ class TestRectangle(unittest.TestCase):
         """
         r12 = Rectangle(2, 2)
         r13 = Rectangle(4, 6)
+        r15 = Rectangle(3, 2, 1, 0)
+        r16 = Rectangle(2, 3, 2, 2)
         out1 = "##\n##\n"
         out2 = "####\n####\n####\n####\n####\n####\n"
+        out3 = " ###\n ###\n"
+        out4 = "\n\n  ##\n  ##\n  ##\n"
         with patch('sys.stdout', new=StringIO()) as fake_out:
             r12.display()
             self.assertEqual(fake_out.getvalue(), out1)
             r13.display()
             self.assertEqual(fake_out.getvalue(), out1 + out2)
+            r15.display()
+            self.assertEqual(fake_out.getvalue(), out1 + out2 + out3)
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            r16.display()
+            self.assertEqual(f.getvalue(), out4)
 
     def test_str(self):
         """
