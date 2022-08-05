@@ -133,6 +133,20 @@ class TestSquare(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s2 = Square(0)
 
+    def test_dictionary(self):
+        """
+        Tests the to_dictionary method
+        """
+        s1 = Square(10, 2, 1)
+        s1.update(1)
+        hold = s1.to_dictionary()
+        self.assertEqual(hold, {'id': 1, 'x': 2, 'size': 10, 'y': 1})
+        s2 = Square(1, 1)
+        s2.update(**hold)
+        self.assertEqual(s1.size, s2.size)
+        self.assertFalse(s1 == s2)
+        self.assertIs(type(hold), dict)
+
 
 if __name__ == '__main__':
     unittest.main()
