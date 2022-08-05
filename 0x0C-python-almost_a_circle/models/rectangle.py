@@ -116,3 +116,31 @@ class Rectangle(Base):
         print("\n" * self.__y, end='')
         for i in range(self.__height):
                 print((' ' * self.__x) + ('#' * self.__width) + '\n', end='')
+
+    def update(self, *args, **kwargs):
+        """
+        Updates the attributes values
+        """
+        if len(args):
+            for n, arg in enumerate(args):
+                if n == 0:
+                    self.id = arg
+                if n == 1:
+                    self.width = arg
+                if n == 2:
+                    self.height = arg
+                if n == 3:
+                    self.x = arg
+                if n == 4:
+                    self.y = arg
+        else:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "width" in kwargs:
+                self.width = kwargs["width"]
+            if "height" in kwargs:
+                self.height = kwargs["height"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]

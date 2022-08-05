@@ -88,6 +88,35 @@ class TestRectangle(unittest.TestCase):
             print(r14)
             self.assertEqual(fake_out.getvalue(), out3)
 
+    def test_update(self):
+        """
+        Testing update method
+        """
+        r17 = Rectangle(10, 10, 10, 10)
+        out1 = "[Rectangle] (89) 10/10 - 10/10\n"
+        out2 = "[Rectangle] (89) 10/10 - 2/3\n"
+        out3 = "[Rectangle] (89) 4/5 - 2/3\n"
+        out4 = "[Rectangle] (89) 4/5 - 2/1\n"
+        out5 = "[Rectangle] (89) 1/3 - 4/2\n"
+        with patch('sys.stdout', new=StringIO()) as f:
+            r17.update(89)
+            print(r17)
+            self.assertEqual(f.getvalue(), out1)
+            r17.update(89, 2, 3)
+            print(r17)
+            self.assertEqual(f.getvalue(), out1 + out2)
+            r17.update(89, 2, 3, 4, 5)
+            print(r17)
+            self.assertEqual(f.getvalue(), out1 + out2 + out3)
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            r17.update(height=1)
+            print(r17)
+            self.assertEqual(f.getvalue(), out4)
+            r17.update(x=1, height=2, y=3, width=4)
+            print(r17)
+            self.assertEqual(f.getvalue(), out4 + out5)
+
 
 if __name__ == '__main__':
     unittest.main()
