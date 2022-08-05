@@ -43,5 +43,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(hold1, jlist[0])
         self.assertEqual(hold2, jlist[1])
 
+
 if __name__ == '__main__':
     unittest.main()

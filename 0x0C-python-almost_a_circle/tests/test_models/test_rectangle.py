@@ -141,7 +141,21 @@ class TestRectangle(unittest.TestCase):
         json_dict = Base.to_json_string([hold])
         self.assertEqual(hold, {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8})
         self.assertIs(type(json_dict), str)
-        
+    
+    def test_create(self):
+        """
+        Testing the create method
+        """
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual(r1.width, r2.width)
+        self.assertEqual(r1.height, r2.height)
+        self.assertEqual(r1.id, r2.id)
+        self.assertEqual(r1.x, r2.x)
+        self.assertEqual(r1.y, r2.y)
+        self.assertFalse(r1 is r2)
+        self.assertFalse(r1 == r2)
 
 
 if __name__ == '__main__':
