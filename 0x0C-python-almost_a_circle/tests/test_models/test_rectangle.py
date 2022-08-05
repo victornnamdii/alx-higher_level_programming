@@ -130,6 +130,17 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.y, r1.y)
         self.assertFalse(r1 == r2)
         self.assertIs(type(hold), dict)
+
+    def test_to_json_string(self):
+        """
+        Testing the base static method to_json_string
+        """
+        r1 = Rectangle(10, 7, 2, 8)
+        r1.update(1)
+        hold = r1.to_dictionary()
+        json_dict = Base.to_json_string([hold])
+        self.assertEqual(hold, {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8})
+        self.assertIs(type(json_dict), str)
         
 
 
