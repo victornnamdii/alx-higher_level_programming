@@ -67,3 +67,19 @@ class Base:
             hold = cls(2)
         hold.update(**dictionary)
         return hold
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Returns a list of instances
+        """
+        filename = cls.__name__ + ".json"
+        listo = []
+        try:
+            with open(filename, "r", encoding="UTF-8") as f:
+                listo = cls.from_json_string(f.read())
+                for n, objs in enumerate(listo):
+                    listo[n] = cls.create(**listo[n])
+        except Exception:
+            pass
+        return listo
