@@ -8,6 +8,7 @@ Date Created: 04 Aug 2022
 
 import json
 
+
 class Base:
     """
     Representation of the class Base
@@ -46,7 +47,7 @@ class Base:
                 objl.append(cls.to_dictionary(i))
         with open(filename, "w", encoding="UTF-8") as f:
             f.write(cls.to_json_string(objl))
-            
+
     @staticmethod
     def from_json_string(json_string):
         """

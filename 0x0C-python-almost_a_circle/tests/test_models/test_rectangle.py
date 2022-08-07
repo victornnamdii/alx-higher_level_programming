@@ -124,7 +124,8 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 2, 1, 9)
         r1.update(1)
         hold = r1.to_dictionary()
-        self.assertEqual(hold, {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10})
+        self.assertEqual(hold,
+                         {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10})
         r2 = Rectangle(1, 1)
         r2.update(**hold)
         self.assertEqual(r1.y, r1.y)
@@ -139,9 +140,10 @@ class TestRectangle(unittest.TestCase):
         r1.update(1)
         hold = r1.to_dictionary()
         json_dict = Base.to_json_string([hold])
-        self.assertEqual(hold, {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8})
+        self.assertEqual(hold,
+                         {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8})
         self.assertIs(type(json_dict), str)
-    
+
     def test_create(self):
         """
         Testing the create method

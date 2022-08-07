@@ -7,9 +7,10 @@ Date Created: 04 Aug 2022
 """
 
 import unittest
-from models.base import Base
+from models import base
 import inspect
 import pep8
+Base = base.Base
 
 
 class TestBaseDocs(unittest.TestCase):
@@ -69,7 +70,8 @@ class TestBase(unittest.TestCase):
         """
         Testing from_json_string method
         """
-        jstring = '[{"height": 4, "width": 10, "id": 89}, {"height": 7, "width": 1, "id": 7}]'
+        jstring = '[{"height": 4, "width": 10, "id": 89}, {"height": 7\
+                , "width": 1, "id": 7}]'
         jlist = Base.from_json_string(jstring)
         self.assertIs(type(jlist), list)
         self.assertEqual(len(jlist), 2)
