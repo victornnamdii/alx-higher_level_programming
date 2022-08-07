@@ -6,6 +6,8 @@ Author: Ilodiuba Victor (victornnamdii)
 Date Created: 04 Aug 2022
 """
 
+import csv
+import random
 import json
 
 
@@ -139,7 +141,7 @@ class Base:
         t.pensize(3)
         shapes = list_rectangles + list_squares
         for shape in shapes:
-            t.pencolor(cl[random.randint(0,6)])
+            t.pencolor(cl[random.randint(0, 6)])
             t.up()
             t.goto(shape.x, shape.y)
             t.down()
@@ -151,5 +153,5 @@ class Base:
             t.right(90)
             t.forward(shape.height)
             t.right(90)
-        
+
         s.exitonclick()
