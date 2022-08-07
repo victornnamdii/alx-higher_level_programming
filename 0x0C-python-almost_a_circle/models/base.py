@@ -84,3 +84,72 @@ class Base:
         except Exception:
             pass
         return listo
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Saves a list of rectangles/squares as a csv file
+        """
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline='', encoding="UTF-8") as csvfile:
+            csv_writer = csv.writer(csvfile)
+            if cls.__name__ == "Rectangle":
+                for obj in list_objs:
+                    csv.writerow([obj.id, obj.width, obj.height,
+                                  obj.x, obj.y])
+            elif cls.__name__ == "Square":
+                for obj in list_objs:
+                    csv.writerow([obj.id, obj.size, obj.x obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Loads from csv
+        """
+        filename = cls.__name__ + ".csv"
+        li = []
+        try:
+            with open(filename, "r", encoding="UTF-8") as csvfile:
+                csv_reader = csv.reader(csvfile)
+                for args in csv_reader:
+                    if cls.__name__ == "Rectangle":
+                        dictionary = {"id": int(args[0]),
+                                      "width": int(args[1]),
+                                      "height": int(args[2]),
+                                      "x": int(args[3]),
+                                      "y": int(args[4])}
+                    elif cls.__name__ == "Square":
+                        dictionary = {"id": int(args[0]), "size": int(args[1]),
+                                      "x": int(args[2]), "y": int(args[3])}
+                    obj = cls.create(**dictionary)
+                    li.append(obj)
+        except Exception:
+            pass
+        return li
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """
+        Draws the shape on a GUI
+        """
+        s = turtle.Screen()
+        t = turtle.Turtle()
+        cl = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+        turtle.bgcolor("black")
+        t.pensize(3)
+        shapes = list_rectangles + list_squares
+        for shape in shapes:
+            t.pencolor(cl[random.randint(0,6)])
+            t.up()
+            t.goto(shape.x, shape.y)
+            t.down()
+            t.forward(shape.width)
+            t.right(90)
+            t.forward(shape.height)
+            t.right(90)
+            t.forward(shape.width)
+            t.right(90)
+            t.forward(shape.height)
+            t.right(90)
+        
+        s.exitonclick()
