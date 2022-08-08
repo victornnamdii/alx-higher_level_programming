@@ -1,73 +1,120 @@
 #!/usr/bin/python3
 """
-Unittest for base module.
-Test cases for base class.
+Contains tests for Base class
 """
 
 import unittest
-import os
-from models.base import Base
-from models.rectangle import Rectangle
-from models.square import Square
+import inspect
+import pep8
+import json
+from models import base
+Base = base.Base
 
 
-class TestBaseClass(unittest.TestCase):
-    """A test class created to run tests for Base class"""
+class TestBaseDocs(unittest.TestCase):
+    """Tests to check the documentation and style of Base class"""
+    @classmethod
+    def setUpClass(cls):
+        """Set up for the doc tests"""
+        cls.base_funcs = inspect.getmembers(Base, inspect.isfunction)
 
-    def setUp(self):
-        Base._Base__nb_objects = 0
+    def test_pep8_conformance_base(self):
+        """Test that models/base.py conforms to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/base.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_0_id_None(self):
-        '''Test for id with None argument passed'''
-        b1 = Base(None)
-        self.assertEqual(b1.id, 1)
+    def test_pep8_conformance_test_base(self):
+        """Test that tests/test_models/test_base.py conforms to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['tests/test_models/test_base.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_1_id(self):
-        '''Test to check for id'''
-        b1 = Base()
+    def test_module_docstring(self):
+        """Tests for the module docstring"""
+        self.assertTrue(len(base.__doc__) >= 1)
+
+    def test_class_docstring(self):
+        """Tests for the Base class docstring"""
+        self.assertTrue(len(Base.__doc__) >= 1)
+
+    def test_func_docstrings(self):
+        """Tests for the presence of docstrings in all functions"""
+        for func in self.base_funcs:
+            self.assertTrue(len(func[1].__doc__) >= 1)
+
+
+class TestBase(unittest.TestCase):
+    """Tests to check functionality of Base class"""
+    def test_too_many_args(self):
+        """test too many args to init"""
+        with self.assertRaises(TypeError):
+            b = Base(1, 1)
+
+    def test_no_id(self):
+        """Tests id as None"""
+        b = Base()
+        self.assertEqual(b.id, 1)
+
+    def test_id_set(self):
+        """Tests id as not None"""
+        b98 = Base(98)
+        self.assertEqual(b98.id, 98)
+
+    def test_no_id_after_set(self):
+        """Tests id as None after not None"""
         b2 = Base()
-        b3 = Base(11)
-        b4 = Base(-12)
-        b5 = Base(0)
-        b6 = Base(1.1)
-        b7 = Base()
-        self.assertEqual(b1.id, 1)
         self.assertEqual(b2.id, 2)
-        self.assertEqual(b3.id, 11)
-        self.assertEqual(b4.id, -12)
-        self.assertEqual(b5.id, 0)
-        self.assertEqual(b6.id, 1.1)
-        self.assertEqual(b7.id, 3)
 
-    def test_2_id_single(self):
-        '''Test for single instance creation with id'''
-        b1 = Base(3)
-        self.assertEqual(b1.id, 3)
+    def test_nb_private(self):
+        """Tests nb_objects as a private instance attribute"""
+        b = Base(3)
+        with self.assertRaises(AttributeError):
+            print(b.nb_objects)
+        with self.assertRaises(AttributeError):
+            print(b.__nb_objects)
 
-    def test_3_id_multi(self):
-        '''Test for multiple instance creation with id'''
-        b1 = Base(3)
-        self.assertEqual(b1.id, 3)
-        b2 = Base(4)
-        self.assertEqual(b2.id, 4)
+    def test_to_json_string(self):
+        """Tests regular to json string"""
+        Base._Base__nb_objects = 0
+        d1 = {"id": 9, "width": 5, "height": 6, "x": 7, "y": 8}
+        d2 = {"id": 2, "width": 2, "height": 3, "x": 4, "y": 0}
+        json_s = Base.to_json_string([d1, d2])
+        self.assertTrue(type(json_s) is str)
+        d = json.loads(json_s)
+        self.assertEqual(d, [d1, d2])
 
-    def test_4_id_string(self):
-        '''Test for string argument'''
-        b1 = Base("foo")
-        self.assertEqual(b1.id, "foo")
+    def test_empty_to_json_string(self):
+        """Test for passing empty list/ None"""
+        json_s = Base.to_json_string([])
+        self.assertTrue(type(json_s) is str)
+        self.assertEqual(json_s, "[]")
 
-    def test_5_id_NaN(self):
-        '''Test for NaN as argument'''
-        b1 = Base(float("nan"))
-        self.assertNotEqual(b1.id, float("nan"))
+    def test_None_to_json_String(self):
+        json_s = Base.to_json_string(None)
+        self.assertTrue(type(json_s) is str)
+        self.assertEqual(json_s, "[]")
 
-    def test_6_id_sameId(self):
-        '''Test for same ids'''
-        b1 = Base(22)
-        self.assertEqual(b1.id, 22)
-        b2 = Base(22)
-        self.assertEqual(b2.id, 22)
+    def test_from_json_string(self):
+        """Tests regular from_json_string"""
+        json_str = '[{"id": 9, "width": 5, "height": 6, "x": 7, "y": 8}, \
+{"id": 2, "width": 2, "height": 3, "x": 4, "y": 0}]'
+        json_l = Base.from_json_string(json_str)
+        self.assertTrue(type(json_l) is list)
+        self.assertEqual(len(json_l), 2)
+        self.assertTrue(type(json_l[0]) is dict)
+        self.assertTrue(type(json_l[1]) is dict)
+        self.assertEqual(json_l[0],
+                         {"id": 9, "width": 5, "height": 6, "x": 7, "y": 8})
+        self.assertEqual(json_l[1],
+                         {"id": 2, "width": 2, "height": 3, "x": 4, "y": 0})
 
+    def test_fjs_empty(self):
+        """Tests from_json_string with an empty string"""
+        self.assertEqual([], Base.from_json_string(""))
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_fjs_None(self):
+        """Tests from_json_string with an empty string"""
+        self.assertEqual([], Base.from_json_string(None))
