@@ -7,6 +7,7 @@ import unittest
 import inspect
 import pep8
 import json
+from models.square import Square
 from models.rectangle import Rectangle
 from models import base
 Base = base.Base
@@ -133,7 +134,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(rects[0].width, 10)
         self.assertEqual(rects[1].id, 99)
         self.assertEqual(rects[1].x, 5)
-        
+
     def test_write_csv_basic(self):
         """tests the base class method to write instances as csv
         """
@@ -169,6 +170,7 @@ class TestBase(unittest.TestCase):
         list_output = Square.load_from_file_csv()
         self.assertEqual(0, len(list_output))
         self.assertEqual(list, type(list_output))
+
 
 if __name__ == '__main__':
     unittest.main()
