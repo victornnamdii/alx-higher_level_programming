@@ -7,6 +7,7 @@ import unittest
 import inspect
 import pep8
 import json
+from models.rectangle import Rectangle
 from models import base
 Base = base.Base
 
