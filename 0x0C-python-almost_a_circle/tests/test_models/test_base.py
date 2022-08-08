@@ -133,3 +133,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(rects[0].width, 10)
         self.assertEqual(rects[1].id, 99)
         self.assertEqual(rects[1].x, 5)
+
+if __name__ == '__main__':
+    unittest.main()
