@@ -133,6 +133,42 @@ class TestBase(unittest.TestCase):
         self.assertEqual(rects[0].width, 10)
         self.assertEqual(rects[1].id, 99)
         self.assertEqual(rects[1].x, 5)
+        
+    def test_write_csv_basic(self):
+        """tests the base class method to write instances as csv
+        """
+        r1 = Rectangle(10, 7, 2, 8, 33)
+        r2 = Rectangle(10, 8, 4, 9, 44)
+        Rectangle.save_to_file_csv([r1, r2])
+        with open('Rectangle.csv', 'r', encoding='utf-8') as myFile:
+            text = myFile.readlines()
+        self.assertEqual(text[0][0] + text[0][1], "33")
+        self.assertEqual(text[1][0] + text[1][1], "44")
+
+    def test_read_csv_basic(self):
+        """tests the base class method to read from csv
+            -> basic input
+        """
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file_csv(list_rectangles_input)
+        list_output = Rectangle.load_from_file_csv()
+        self.assertEqual(8, list_output[0].y)
+        self.assertEqual(4, list_output[1].height)
+        self.assertEqual(4, list_output[1].height)
+
+    def test_read_csv_empty(self):
+        """
+        Testing read csv
+        """
+        try:
+            os.remove('Square.csv')
+        except Exception:
+            pass
+        list_output = Square.load_from_file_csv()
+        self.assertEqual(0, len(list_output))
+        self.assertEqual(list, type(list_output))
 
 if __name__ == '__main__':
     unittest.main()
