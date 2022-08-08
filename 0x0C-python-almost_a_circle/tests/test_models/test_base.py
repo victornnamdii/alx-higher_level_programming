@@ -118,3 +118,17 @@ class TestBase(unittest.TestCase):
     def test_fjs_None(self):
         """Tests from_json_string with an empty string"""
         self.assertEqual([], Base.from_json_string(None))
+
+    def test_read_from_file_basic(self):
+        """tests the base class method to read from json files when
+            -> input is basic
+        """
+        r1 = Rectangle(10, 7, 8, 3, 44)
+        r2 = Rectangle(24, 23, 5, 1, 99)
+        Rectangle.save_to_file([r1, r2])
+        with open('Rectangle.json', 'r', encoding='utf-8') as myFile:
+            text = myFile.read()
+        rects = Rectangle.load_from_file()
+        self.assertEqual(rects[0].width, 10)
+        self.assertEqual(rects[1].id, 99)
+        self.assertEqual(rects[1].x, 5)
