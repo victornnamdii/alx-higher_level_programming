@@ -98,7 +98,7 @@ class Base:
             if cls.__name__ == "Rectangle":
                 for obj in list_objs:
                     csv_writer.writerow([obj.id, obj.width, obj.height,
-                                  obj.x, obj.y])
+                                         obj.x, obj.y])
             elif cls.__name__ == "Square":
                 for obj in list_objs:
                     csv_writer.writerow([obj.id, obj.size, obj.x, obj.y])
