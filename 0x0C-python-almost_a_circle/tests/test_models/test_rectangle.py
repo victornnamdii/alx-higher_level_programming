@@ -408,3 +408,13 @@ class TestRectangle(unittest.TestCase):
         self.assertIsNot(r2, r2c)
         self.assertNotEqual(r1, r1c)
         self.assertNotEqual(r2, r2c)
+
+    def test_save_to_file_empty(self):
+        """
+        Tests Rectangle.save_to_file([])
+        """
+        Rectangle.save_to_file([])
+        with open('Rectangle.json', 'r', encoding='utf-8') as f:
+            text = f.read()
+        rects = Rectangle.load_from_file()
+        self.assertEqual(len(rects), 0)

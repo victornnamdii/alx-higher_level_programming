@@ -375,3 +375,13 @@ class TestSquare(unittest.TestCase):
         self.assertIsNot(s2, s2c)
         self.assertNotEqual(s1, s1c)
         self.assertNotEqual(s2, s2c)
+
+    def test_save_to_file_empty(self):
+        """
+        Tests Square.save_to_file([])
+        """
+        Square.save_to_file([])
+        with open('Square.json', 'r', encoding='utf-8') as f:
+            text = f.read()
+        rects = Square.load_from_file()
+        self.assertEqual(len(rects), 0)
