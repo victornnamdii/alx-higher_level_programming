@@ -1,8 +1,5 @@
 -- Using temperature data set from ex.18
 -- Display top 3 cities by temperature during July and August
 -- ordered by temperature descending
-SELECT city, month, AVG(value) AS avg_temp FROM temperatures
-WHERE (month=7 OR month=8)
-GROUP BY city
-ORDER BY avg_temp DESC
-LIMIT 3;
+SELECT city, AVG(value) as avg_temp FROM temperatures WHERE month = 8 OR month = 7
+GROUP BY city ORDER BY avg_temp DESC LIMIT 3;
