@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-File: 11-model_state_insert.py
+File: 12-model_state_update_id_2.py
 Author: Ildoiuba Victor
-Desc: a script that adds the State object “Louisiana” to the database
+Desc: a script that changes the name of a State object from the database
         hbtn_0e_6_usa
 Date: 07 Oct 2022
 """
@@ -18,8 +18,8 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    nstate = State(name='Louisiana')
-    session.add(nstate)
+    state = session.query(State).filter(State.id == 2).first()
+    state.name = "New Mexico"
+    session.add(state)
     session.commit()
-    print(nstate.id)
     session.close()
