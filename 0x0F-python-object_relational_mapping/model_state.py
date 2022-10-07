@@ -7,7 +7,6 @@ Desc: contains the class definition of a State and an
 Date: 07 Oct 2022
 """
 
-from enum import unique
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -16,7 +15,7 @@ Base = declarative_base()
 
 class State(Base):
     """
-    An SQL table called users
+    An SQL table called states
     """
     __tablename__ = 'states'
 
