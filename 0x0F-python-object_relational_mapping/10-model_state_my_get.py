@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-File: 9-model_state_filter_a.py
+File: 10-model_state_my_get.py
 Author: Ildoiuba Victor
-Desc: a script that lists all State objects that contain the
-        letter a from the database hbtn_0e_6_usa
+Desc: a script that prints the State object with the name passed
+        as argument from the database hbtn_0e_6_usa
 Date: 07 Oct 2022
 """
 
@@ -18,8 +18,9 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    states = session.query(State).filter(State.name.like('%a%'))\
-                    .order_by(State.id).all()
-    for state in states:
-        print("{}: {}".format(state.id, state.name))
+    state = session.query(State).filter(State.name.like(argv[4])).first()
+    if state:
+        print("{}".format(state.id))
+    else:
+        print("Not found")
     session.close()

@@ -7,7 +7,6 @@ Desc: a script that prints the first State object from
 Date: 07 Oct 2022
 """
 
-import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sys import argv
