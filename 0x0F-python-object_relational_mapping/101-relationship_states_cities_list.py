@@ -1,10 +1,9 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 """
-File: 100-relationship_states_cities.py
-Author: Ildoiuba Victor
-Desc:  a script that creates the State “California” with the City
-        “San Francisco” from the database hbtn_0e_100_usa
-Date: 07 Oct 2022
+    a script that lists all State objects, and corresponding
+    City objects, contained in the database hbtn_0e_101_usa
+
+    Author: Ilodiuba Victor
 """
 
 from sqlalchemy import create_engine
@@ -19,9 +18,9 @@ if __name__ == '__main__':
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    cali = State(name="California")
-    city = City(name="San Fransisco")
-    cali.cities.append(city)
-    session.add_all([cali, city])
-    session.commit()
+    states = session.query(State).join(City).order_by(State.id, City.id).all()
+    for state in states:
+        print("{}: {}".format(state.id, state.name))
+        for city in state.cities:
+            print("\t{}: {}".format(city.id, city.name))
     session.close()
