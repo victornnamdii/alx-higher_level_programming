@@ -3,7 +3,7 @@
     a script that lists all State objects, and corresponding
     City objects, contained in the database hbtn_0e_101_usa
 
-    Author: Ilodiuba Victor
+    Author: Ilodiuba Victor (victornnamdii)
 """
 
 from sqlalchemy import create_engine
