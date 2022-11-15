@@ -9,7 +9,7 @@ request(url, function (error, response, body) {
       const movie = movieData[index];
       for (const cIndex in movie.characters) {
         const character = movie.characters[cIndex];
-        if (character === 'https://swapi-api.hbtn.io/api/people/18/') count += 1;
+        if (character.endsWith('/18/')) count += 1;
       }
     }
     console.log(count);
